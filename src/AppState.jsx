@@ -41,17 +41,29 @@ export class AppState {
     }
   ];
 
+  /**
+   * fetchData from remote server
+   */
   fetchCards() {
+    let preStates = this.cardsList.slice(0);
     fetch(API_URL + '/cards', { headers: API_HEADERS })
       .then((response) => response.json())
       .then((responseData) => {
         this.cardsList = responseData;
       })
       .catch((error) => {
+        this.cardsList = preStates;
         console.log('Error fetching and parsing data', error);
       });
   }
 
+  /**
+   * 
+   * 
+   * @param {number} cardId
+   * @param {number} taskId
+   * @param {number} taskIndex
+   */
   deleteTask(cardId, taskId, taskIndex) {
     // Find the index of the card
     let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
@@ -59,14 +71,32 @@ export class AppState {
 
   }
 
+
+  /**
+   * 
+   * 
+   * @param {number} cardId
+   * @param {number} taskId
+   * @param {number} taskIndex
+   */
   toggleTask(cardId, taskId, taskIndex) {
     let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
-    this.cardsList[cardIndex].tasks.map((value,index)=>{
-      if(index == taskIndex){
+    this.cardsList[cardIndex].tasks.map((value, index) => {
+      if (index == taskIndex) {
         value.done = !value.done;
         console.log(JSON.stringify(value));
       }
     })
+  }
+  
+  /**
+   * @param  {string} cardId
+   * @param  {string} taskName
+   * @returns {void}
+   */
+  addTask(cardId, taskName) {
+    let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
+    this.cardsList[cardIndex].tasks.push({ id: Date.now(), name: taskName, done: false });
   }
 
 }

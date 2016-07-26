@@ -1,25 +1,27 @@
+/// <reference path="./../typings/index.d.ts" />
 import React from 'react';
 import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import AppState from './AppState';
-import KanbanBoard from './App';
+import { AppContainer} from 'react-hot-loader';
+import {AppState} from './AppState';
+import {KanbanBoard} from './KanbanBoard';
 
-const appState = new AppState();
+
+export const appState = new AppState();
 
 render(
   <AppContainer>
-   <KanbanBoard cards={appState.cardsList} />
+   <KanbanBoard store={appState} />
   </AppContainer>,
   document.getElementById('root')
 );
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
+  module.hot.accept('./KanbanBoard', () => {
+    const NextApp = require('./KanbanBoard').default;
 
     render(
       <AppContainer>
-        <NextApp cards={appState.cardsList}  />
+        <NextApp store={appState}  />
       </AppContainer>,
       document.getElementById('root')
     );

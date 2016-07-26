@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {CheckList} from './CheckList';
-import { observable, extendObservable } from 'mobx';
-import {observer} from 'mobx-react';
+import { observable } from 'mobx';
+import {observer,propTypes} from 'mobx-react';
 
 @observer
 export class Card extends Component {
@@ -21,15 +21,40 @@ export class Card extends Component {
                 </div>
             )
         }
+        let sideColor = {
+            position: 'absolute',
+            zIndex: -1,
+            top: 0,
+            bottom: 0,
+            left: 0,
+            width: 7,
+            backgroundColor: this.props.color
+        };
+
         return (
-            <div className="card" onClick={ ::this.toggleDetails} >
-                <div className="card__title">{this.props.title} </div>
-{ cardDetails }
+            <div className="card">
+                <div style={sideColor} />
+                <div className={this.showDetail ? 'card__title card__title--is-open' : 'card__title'}
+                    onClick={ :: this.toggleDetails} >
+                {this.props.title}
+
+            </div>
+                  { cardDetails }
             </div >
         )
     }
 
-toggleDetails() {
-    this.showDetail = !this.showDetail;
+    toggleDetails() {
+        this.showDetail = !this.showDetail;
+    }
 }
+
+
+Card.propTypes = {
+    id: PropTypes.number,
+    title: PropTypes.string,
+    tasks: propTypes.observableArray,
+    description: PropTypes.string,
+    color: PropTypes.string
+
 }

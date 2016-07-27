@@ -22,10 +22,11 @@ export class Card extends Component {
     }
     render() {
         let cardDetails;
+        const {description, id, tasks} = this.props;
         if (this.showDetail) {
             cardDetails = (
-                <div className="card__details">{this.props.description}
-                    <CheckList cardId={this.props.id} tasks={this.props.tasks} />
+                <div className="card__details">{description}
+                    <CheckList cardId={id} tasks={tasks} />
                 </div>
             )
         }

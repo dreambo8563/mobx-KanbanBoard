@@ -10,7 +10,8 @@ export class List extends Component {
         cards: PropTypes.arrayOf(PropTypes.object)
     }
     render() {
-        var cards = this.props.cards.map((card) => {
+        const {cards, title} = this.props;
+        let cardsCom = cards.map((card) => {
             return <Card id={card.id}
                 title={card.title}
                 key={card.id}
@@ -20,8 +21,8 @@ export class List extends Component {
         });
         return (
             <div className="list">
-                <h1>{this.props.title}</h1>
-                {cards}
+                <h1>{title}</h1>
+                {cardsCom}
             </div>
         )
 

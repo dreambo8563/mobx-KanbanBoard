@@ -12,22 +12,23 @@ export class KanbanBoard extends Component {
   }
 
   componentDidMount() {
-    this.props.store.fetchCards();
+    const {store} = this.props;
+    store.fetchCards();
   }
 
   render() {
-
+    const {store} = this.props;
     return (
 
       <div className="app">
         <List id='todo' title="To Do" cards={
-          this.props.store.cardsList.filter((card) => card.status === 'todo')
+          store.cardsList.filter((card) => card.status === 'todo')
         } />
         <List id='in-progress' title="In Progress" cards={
-          this.props.store.cardsList.filter((card) => card.status === 'in-progress')
+          store.cardsList.filter((card) => card.status === 'in-progress')
         } />
         <List id='done' title='Done' cards={
-          this.props.store.cardsList.filter((card) => card.status === 'done')
+          store.cardsList.filter((card) => card.status === 'done')
         } />
         <DevTools />
       </div>

@@ -1,10 +1,14 @@
-import React, { Component ,PropTypes} from 'react';
+import React, { Component, PropTypes} from 'react';
 import {Card} from './Card';
 import { observer } from 'mobx-react';
 
 @observer
 export class List extends Component {
 
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        cards: PropTypes.arrayOf(PropTypes.object)
+    }
     render() {
         var cards = this.props.cards.map((card) => {
             return <Card id={card.id}
@@ -22,9 +26,4 @@ export class List extends Component {
         )
 
     }
-}
-
-List.propTypes ={
-    title:PropTypes.string.isRequired,
-    cards:PropTypes.arrayOf(PropTypes.object)
 }

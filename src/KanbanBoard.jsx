@@ -7,6 +7,10 @@ import {List} from './List';
 @observer
 export class KanbanBoard extends Component {
 
+  static propTypes = {
+    cards: PropTypes.object
+  }
+
   componentDidMount() {
     this.props.store.fetchCards();
   }
@@ -29,9 +33,5 @@ export class KanbanBoard extends Component {
       </div>
     )
   }
-}
-
-KanbanBoard.propTypes = {
-  cards: PropTypes.object
 }
 

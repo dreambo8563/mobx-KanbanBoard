@@ -9,6 +9,10 @@ export class CheckList extends Component {
     constructor() {
         super();
     }
+    static propTypes = {
+        cardId: PropTypes.number,
+        tasks: propTypes.observableArray
+    }
     render() {
 
         let tasks = this.props.tasks.map((task, taskIndex) => (
@@ -21,10 +25,15 @@ export class CheckList extends Component {
             <div className="checklist">
                 <ul>{tasks}</ul>
                 <input type="text" className="checklist--add-task" placeholder="Type then hit Enter to add a task"
-                    onKeyPress={::this.checkInputKeyPress}  />
+                    onKeyPress={:: this.checkInputKeyPress}  />
             </div>
         )
     }
+    /**
+     * 
+     * response to Enter
+     * @param {any} event
+     */
     checkInputKeyPress(event) {
         if (event.key === 'Enter') {
             appState.addTask(this.props.cardId, event.target.value);
@@ -32,9 +41,4 @@ export class CheckList extends Component {
         }
     }
 
-}
-
-CheckList.propTypes = {
-    cardId: PropTypes.number,
-    tasks: propTypes.observableArray
 }

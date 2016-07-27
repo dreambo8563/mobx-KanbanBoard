@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {CheckList} from './CheckList';
 import { observable } from 'mobx';
-import {observer,propTypes} from 'mobx-react';
+import {observer, propTypes} from 'mobx-react';
 
 @observer
 export class Card extends Component {
@@ -11,6 +11,14 @@ export class Card extends Component {
     // need to remove the react-hot from webpack loader
     constructor() {
         super();
+    }
+    static propTypes = {
+        id: PropTypes.number,
+        title: PropTypes.string,
+        tasks: propTypes.observableArray,
+        description: PropTypes.string,
+        color: PropTypes.string
+
     }
     render() {
         let cardDetails;
@@ -47,14 +55,4 @@ export class Card extends Component {
     toggleDetails() {
         this.showDetail = !this.showDetail;
     }
-}
-
-
-Card.propTypes = {
-    id: PropTypes.number,
-    title: PropTypes.string,
-    tasks: propTypes.observableArray,
-    description: PropTypes.string,
-    color: PropTypes.string
-
 }

@@ -3,7 +3,10 @@ import React, { Component, PropTypes } from 'react';
 import { observer, propTypes  } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import {List} from './List';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
+@DragDropContext(HTML5Backend)
 @observer
 export class KanbanBoard extends Component {
 

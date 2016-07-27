@@ -58,8 +58,6 @@ export class AppState {
   }
 
   /**
-   * 
-   * 
    * @param {number} cardId
    * @param {number} taskId
    * @param {number} taskIndex
@@ -73,8 +71,6 @@ export class AppState {
 
 
   /**
-   * 
-   * 
    * @param {number} cardId
    * @param {number} taskId
    * @param {number} taskIndex
@@ -88,9 +84,9 @@ export class AppState {
       }
     })
   }
-  
+
   /**
-   * @param  {string} cardId
+   * @param  {number} cardId
    * @param  {string} taskName
    * @returns {void}
    */
@@ -99,4 +95,32 @@ export class AppState {
     this.cardsList[cardIndex].tasks.push({ id: Date.now(), name: taskName, done: false });
   }
 
+  /**
+   * @param {number} cardId
+   * @param {string} listId
+   */
+  updateCardStatus(cardId, listId) {
+    // dragged card
+    let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
+    //dragged the card hover on the differnt list
+    if (this.cardsList[cardIndex].status != listId) {
+      //change the list state
+      this.cardsList[cardIndex].status = listId;
+    }
+  }
+
+
+  /**
+   * @param {number} cardId
+   * @param {number} afterId
+   */
+  updateCardPosition(cardId, afterId) {
+    if (cardId !== afterId) {
+      let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
+      let card = this.cardsList[cardIndex]
+      let afterIndex = this.cardsList.findIndex((card) => card.id == afterId);
+      this.cardsList.splice(cardIndex, 1);
+      this.cardsList.splice(afterIndex, 0, card);
+    }
+  }
 }

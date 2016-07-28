@@ -2,26 +2,23 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer} from 'react-hot-loader';
-import {AppState} from './AppState';
-import {KanbanBoard} from './KanbanBoard';
+import RouterComp from './Router';
 
-
-export const appState = new AppState();
 
 render(
   <AppContainer>
-   <KanbanBoard store={appState} />
+    <RouterComp  />
   </AppContainer>,
   document.getElementById('root')
 );
 
 if (module.hot) {
-  module.hot.accept('./KanbanBoard', () => {
-    const NextApp = require('./KanbanBoard').default;
+  module.hot.accept('./Router', () => {
+    const NextApp = require('./Router').default;
 
     render(
       <AppContainer>
-        <NextApp store={appState}  />
+        <NextApp   />
       </AppContainer>,
       document.getElementById('root')
     );

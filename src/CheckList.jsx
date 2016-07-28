@@ -1,8 +1,8 @@
 import React, { Component, PropTypes} from 'react';
-import {propTypes, observer, inject} from 'mobx-react';
+import {propTypes, observer} from 'mobx-react';
 import {appState} from './index'
 
-// @inject(appState)
+
 @observer
 export class CheckList extends Component {
 
@@ -32,7 +32,7 @@ export class CheckList extends Component {
     /**
      * 
      * response to Enter
-     * @param {any} event
+     * @param {KeyboardEvent} event
      */
     checkInputKeyPress(event) {
         if (event.key === 'Enter') {

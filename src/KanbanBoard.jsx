@@ -1,6 +1,6 @@
 /// <reference path="./../typings/index.d.ts" />
-import React, { Component, PropTypes } from 'react';
-import { observer, propTypes  } from 'mobx-react';
+import React, { Component } from 'react';
+import { observer  } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import {List} from './List';
 import { DragDropContext } from 'react-dnd';
@@ -10,17 +10,13 @@ import HTML5Backend from 'react-dnd-html5-backend';
 @observer
 export class KanbanBoard extends Component {
 
-  static propTypes = {
-    cards: PropTypes.object
-  }
-
   componentDidMount() {
-    const {store} = this.props;
+    const {store} = this.props.route;
     store.fetchCards();
   }
 
   render() {
-    const {store} = this.props;
+    const {store} = this.props.route;
     return (
 
       <div className="app">
@@ -33,10 +29,10 @@ export class KanbanBoard extends Component {
         <List id='done' title='Done' cards={
           store.cardsList.filter((card) => card.status === 'done')
         } />
+        {this.props.children}
         <DevTools />
       </div>
     )
   }
 }
-
 

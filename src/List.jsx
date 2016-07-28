@@ -3,7 +3,7 @@ import {Card} from './Card';
 import { observer } from 'mobx-react';
 import { DropTarget } from 'react-dnd';
 import {Type} from './Constants';
-import {appState} from './index'
+import {appState} from './Router'
 
 
 const listTargetSpec = {

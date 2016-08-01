@@ -8,12 +8,12 @@ import { browserHistory } from 'react-router';
 @observer
 export class EditCard extends Component {
     @observable editCard = {
-        id: Date.now(),
-        title: '',
-        description: '',
-        status: 'todo',
-        color: '#c9c9c9',
-        tasks: []
+        // id: Date.now(),
+        // title: '',
+        // description: '',
+        // status: 'todo',
+        // color: '#c9c9c9',
+        // tasks: []
     };
 
     componentDidMount() {

@@ -13,7 +13,7 @@ export class CardForm extends Component {
         handleClose: PropTypes.func.isRequired
     }
     handleChange(field, e) {
-        this.props.handleChange(field,e.target.value);
+        this.props.handleChange(field, e.target.value);
     }
     handleClose(e) {
         e.preventDefault();
@@ -21,24 +21,25 @@ export class CardForm extends Component {
     }
 
     render() {
+        const {handleSubmit, draftCard, buttonLabel} = this.props;
         return (
             <div>
                 <div className="card big">
-                    <form onSubmit={this.props.handleSubmit.bind(this) }>
+                    <form onSubmit={(e) => handleSubmit(e) }>
                         <input type='text'
-                            value={this.props.draftCard.title}
-                            onChange={this.handleChange.bind(this, 'title') }
+                            value={draftCard.title}
+                            onChange={(e) => { this.handleChange('title', e) } }
                             placeholder="Title"
                             required={true}
                             autoFocus={true} />
-                        <textarea value={this.props.draftCard.description}
-                            onChange={this.handleChange.bind(this, 'description') }
+                        <textarea value={draftCard.description}
+                            onChange={(e) => { this.handleChange('description', e) } }
                             placeholder="Description"
                             required={true} />
                         <label htmlFor="status">Status</label>
                         <select id="status"
-                            value={this.props.draftCard.status}
-                            onChange={this.handleChange.bind(this, 'status') }>
+                            value={draftCard.status}
+                            onChange={(e) => { this.handleChange('status', e) } }>
                             <option value="todo">To Do</option>
                             <option value="in-progress">In Progress</option>
                             <option value="done">Done</option>
@@ -46,18 +47,18 @@ export class CardForm extends Component {
                         <br />
                         <label htmlFor="color">Color</label>
                         <input id="color"
-                            value={this.props.draftCard.color}
-                            onChange={this.handleChange.bind(this, 'color') }
+                            value={draftCard.color}
+                            onChange={(e) => { this.handleChange('color', e) } }
                             type="color"
                             />
                         <div className='actions'>
-                            <button type="submit">{this.props.buttonLabel}</button>
+                            <button type="submit">{buttonLabel}</button>
                         </div>
                     </form>
                 </div>
-                <div className="overlay" onClick={this.handleClose.bind(this) }>
-                </div>
+                <div className="overlay" onClick={:: this.handleClose }>
             </div>
+            </div >
         )
     }
 

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes} from 'react';
 import {propTypes, observer} from 'mobx-react';
-import {appState} from './index'
+import {appState} from './AppState';
 
 
 @observer

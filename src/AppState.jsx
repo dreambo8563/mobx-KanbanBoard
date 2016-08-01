@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, computed} from 'mobx';
 import 'whatwg-fetch';
 
 const API_URL = 'http://kanbanapi.pro-react.com';
@@ -6,7 +6,7 @@ const API_HEADERS = {
   'Content-Type': 'application/json',
   Authorization: 'any-string-you-like'// The Authorization is not needed for local server
 };
-export class AppState {
+class AppState {
   @observable cardsList = [
     {
       id: 1,
@@ -123,4 +123,15 @@ export class AppState {
       this.cardsList.splice(afterIndex, 0, card);
     }
   }
+
+  addCard(card) {
+    if (card.id === null) {
+      card = {...card, id: Date.now() };
+    }
+    // Create a new object and push the new card to the array of cards
+    this.cardsList.push(card);
+  }
 }
+
+export const appState = new AppState();
+

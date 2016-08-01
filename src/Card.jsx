@@ -5,7 +5,7 @@ import {observer, propTypes} from 'mobx-react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { DragSource, DropTarget} from 'react-dnd';
 import {Type} from './Constants';
-import {appState} from './Router';
+import {appState} from './AppState';
 
 const cardDragSpec = {
     beginDrag(props) {

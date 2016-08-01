@@ -3,7 +3,7 @@ import {Card} from './Card';
 import { observer } from 'mobx-react';
 import { DropTarget } from 'react-dnd';
 import {Type} from './Constants';
-import {appState} from './Router'
+import {appState} from './AppState';
 
 
 const listTargetSpec = {
@@ -22,7 +22,7 @@ export class List extends Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
         cards: PropTypes.arrayOf(PropTypes.object),
-        connectDropTarget:PropTypes.func.isRequired
+        connectDropTarget: PropTypes.func.isRequired
     }
     render() {
         const {cards, title, connectDropTarget} = this.props;

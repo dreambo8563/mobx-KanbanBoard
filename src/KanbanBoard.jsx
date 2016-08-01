@@ -17,6 +17,9 @@ export class KanbanBoard extends Component {
 
   render() {
     const {store} = this.props.route;
+    let cardModal = this.props.children && React.cloneElement(this.props.children, {
+      cards:  store.cardsList
+    });
     return (
 
       <div className="app">
@@ -29,7 +32,7 @@ export class KanbanBoard extends Component {
         <List id='done' title='Done' cards={
           store.cardsList.filter((card) => card.status === 'done')
         } />
-        {this.props.children}
+        {cardModal}
         <DevTools />
       </div>
     )

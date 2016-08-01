@@ -3,7 +3,7 @@ import {propTypes, observer} from 'mobx-react';
 import { observable, toJS } from 'mobx';
 import {CardForm} from './CardForm';
 import { appState} from './AppState';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 
 @observer
 export class NewCard extends Component {

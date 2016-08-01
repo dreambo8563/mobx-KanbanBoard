@@ -28,7 +28,7 @@ export class EditCard extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.cardCallbacks.updateCard(this.state);
+        // this.props.cardCallbacks.updateCard(this.state);
         browserHistory.push('/');
     }
 
@@ -41,10 +41,10 @@ export class EditCard extends Component {
         return (
             <CardForm draftCard={this.editCard}
                 buttonLabel="Edit Card"
-                handleChange={this.handleChange.bind(this) }
-                handleSubmit={this.handleSubmit.bind(this) }
-                handleClose={this.handleClose.bind(this) } />
+                handleChange={::this.handleChange }
+    handleSubmit = {::this.handleSubmit }
+    handleClose = {::this.handleClose } />
         )
-    }
+}
 
 }

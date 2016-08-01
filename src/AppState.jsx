@@ -124,12 +124,22 @@ class AppState {
     }
   }
 
+  /**
+   * @param {Object} card
+   */
   addCard(card) {
     if (card.id === null) {
       card = {...card, id: Date.now() };
     }
-    // Create a new object and push the new card to the array of cards
     this.cardsList.push(card);
+  }
+
+  /**
+   * @param {Object} card
+   */
+  updateCard(card) {
+    let cardIndex = this.cardsList.findIndex((c) => c.id == card.id);
+    this.cardsList[cardIndex] = card;
   }
 }
 

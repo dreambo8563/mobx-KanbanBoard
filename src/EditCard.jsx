@@ -8,17 +8,17 @@ import { browserHistory } from 'react-router';
 @observer
 export class EditCard extends Component {
     @observable editCard = {
-        // id: Date.now(),
-        // title: '',
-        // description: '',
-        // status: 'todo',
-        // color: '#c9c9c9',
-        // tasks: []
+        id: Date.now(),
+        title: '',
+        description: '',
+        status: 'todo',
+        color: '#c9c9c9',
+        tasks: []
     };
 
     componentDidMount() {
         autorun(() => {
-            this.editCard = appState.cardsList.find((card) => card.id == this.props.params.card_id) || {};
+            this.editCard = appState.cardsList.find((card) => card.id == this.props.params.card_id) || this.editCard;
         })
     }
 
@@ -28,7 +28,7 @@ export class EditCard extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // this.props.cardCallbacks.updateCard(this.state);
+        appState.updateCard(this.editCard);
         browserHistory.push('/');
     }
 

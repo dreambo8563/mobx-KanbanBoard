@@ -22,23 +22,24 @@ export class CardForm extends Component {
 
     render() {
         const {handleSubmit, draftCard, buttonLabel} = this.props;
+        console.log(this.props.draftCard.title)
         return (
             <div>
                 <div className="card big">
                     <form onSubmit={(e) => handleSubmit(e) }>
                         <input type='text'
-                            value={draftCard.title || ''}
+                            value={draftCard.title}
                             onChange={(e) => { this.handleChange('title', e) } }
                             placeholder="Title"
                             required={true}
                             autoFocus={true} />
-                        <textarea value={draftCard.description|| ''}
+                        <textarea value={draftCard.description}
                             onChange={(e) => { this.handleChange('description', e) } }
                             placeholder="Description"
                             required={true} />
                         <label htmlFor="status">Status</label>
                         <select id="status"
-                            value={draftCard.status || ''}
+                            value={draftCard.status}
                             onChange={(e) => { this.handleChange('status', e) } }>
                             <option value="todo">To Do</option>
                             <option value="in-progress">In Progress</option>
@@ -47,7 +48,7 @@ export class CardForm extends Component {
                         <br />
                         <label htmlFor="color">Color</label>
                         <input id="color"
-                            value={draftCard.color ||'#c9c9c9'}
+                            value={draftCard.color}
                             onChange={(e) => { this.handleChange('color', e) } }
                             type="color"
                             />

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {CheckList} from './CheckList';
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 import {observer, propTypes} from 'mobx-react';
 import { Link } from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -70,7 +70,7 @@ export class Card extends Component {
         return connectDropTarget(connectDragSource(
             <div className="card">
                 <div style={sideColor} />
-                <div className="card__edit"><Link to={'/edit/'+id}>&#9998;</Link></div>
+                <div className="card__edit"><Link to={'/edit/' + id}>&#9998; </Link></div>
                 <div className={this.showDetail ? 'card__title card__title--is-open' : 'card__title'} onClick={ :: this.toggleDetails}>
                 {this.props.title}
             </div>
@@ -81,6 +81,7 @@ export class Card extends Component {
         ));
     }
 
+    @action
     toggleDetails() {
         this.showDetail = !this.showDetail;
     }

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes} from 'react';
 import {propTypes, observer} from 'mobx-react';
-import { observable, toJS } from 'mobx';
+import { observable, toJS, action } from 'mobx';
 import {CardForm} from './CardForm';
 import { appState} from './AppState';
 import { browserHistory } from 'react-router';
@@ -16,6 +16,7 @@ export class NewCard extends Component {
         tasks: []
     };
 
+    @action
     handleChange(field, value) {
 
         this.defaultCard[field] = value;

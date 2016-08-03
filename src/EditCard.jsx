@@ -1,7 +1,7 @@
 import React, { Component, PropTypes} from 'react';
 import {propTypes, observer} from 'mobx-react';
 import {CardForm} from './CardForm';
-import { observable, toJS, autorun} from 'mobx';
+import { observable, toJS, autorun, action} from 'mobx';
 import {appState} from './AppState';
 import { browserHistory } from 'react-router';
 
@@ -18,10 +18,13 @@ export class EditCard extends Component {
 
     componentDidMount() {
         autorun(() => {
+            console.log("autorun")
             this.editCard = appState.cardsList.find((card) => card.id == this.props.params.card_id) || this.editCard;
         })
     }
 
+
+    @action
     handleChange(field, value) {
         this.editCard[field] = value;
     }

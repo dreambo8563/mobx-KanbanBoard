@@ -1,4 +1,4 @@
-import { observable, computed} from 'mobx';
+import { observable, computed, action, runInAction} from 'mobx';
 import 'whatwg-fetch';
 
 const API_URL = 'http://kanbanapi.pro-react.com';
@@ -44,17 +44,18 @@ class AppState {
   /**
    * fetchData from remote server
    */
+  @action
   fetchCards() {
     let preStates = this.cardsList.slice(0);
     fetch(API_URL + '/cards', { headers: API_HEADERS })
-      .then((response) => response.json())
-      .then((responseData) => {
+      .then(action((response) => response.json()))
+      .then(action((responseData) => {
         this.cardsList = responseData;
-      })
-      .catch((error) => {
+      }))
+      .catch(action((error) => {
         this.cardsList = preStates;
         console.log('Error fetching and parsing data', error);
-      });
+      }));
   }
 
   /**
@@ -62,6 +63,7 @@ class AppState {
    * @param {number} taskId
    * @param {number} taskIndex
    */
+  @action
   deleteTask(cardId, taskId, taskIndex) {
     // Find the index of the card
     let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
@@ -75,6 +77,7 @@ class AppState {
    * @param {number} taskId
    * @param {number} taskIndex
    */
+  @action
   toggleTask(cardId, taskId, taskIndex) {
     let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
     this.cardsList[cardIndex].tasks.map((value, index) => {
@@ -90,6 +93,7 @@ class AppState {
    * @param  {string} taskName
    * @returns {void}
    */
+  @action
   addTask(cardId, taskName) {
     let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
     this.cardsList[cardIndex].tasks.push({ id: Date.now(), name: taskName, done: false });
@@ -99,6 +103,7 @@ class AppState {
    * @param {number} cardId
    * @param {string} listId
    */
+  @action
   updateCardStatus(cardId, listId) {
     // dragged card
     let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
@@ -114,6 +119,7 @@ class AppState {
    * @param {number} cardId
    * @param {number} afterId
    */
+  @action
   updateCardPosition(cardId, afterId) {
     if (cardId !== afterId) {
       let cardIndex = this.cardsList.findIndex((card) => card.id == cardId);
@@ -127,6 +133,7 @@ class AppState {
   /**
    * @param {Object} card
    */
+  @action
   addCard(card) {
     if (card.id === null) {
       card = {...card, id: Date.now() };
@@ -137,6 +144,7 @@ class AppState {
   /**
    * @param {Object} card
    */
+  @action
   updateCard(card) {
     let cardIndex = this.cardsList.findIndex((c) => c.id == card.id);
     this.cardsList[cardIndex] = card;

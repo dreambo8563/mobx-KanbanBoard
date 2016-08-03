@@ -5,7 +5,7 @@ import { AppContainer} from 'react-hot-loader';
 import RouterComp from './Router';
 import {useStrict} from 'mobx';
 
-useStrict(false);
+useStrict(true);
 render(
   <AppContainer>
     <RouterComp  />

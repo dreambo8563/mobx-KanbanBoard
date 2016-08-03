@@ -1,28 +1,24 @@
 import React, { Component, PropTypes} from 'react';
 import {propTypes, observer} from 'mobx-react';
 import {CardForm} from './CardForm';
-import { observable, toJS, autorun, action} from 'mobx';
+import { observable, toJS, autorun, action,computed} from 'mobx';
 import {appState} from './AppState';
 import { browserHistory } from 'react-router';
 
 @observer
 export class EditCard extends Component {
-    @observable editCard = {
+    @observable defaultEditCard = {
         id: Date.now(),
         title: '',
         description: '',
         status: 'todo',
         color: '#c9c9c9',
         tasks: []
-    };
-
-    componentDidMount() {
-        autorun(() => {
-            console.log("autorun")
-            this.editCard = appState.cardsList.find((card) => card.id == this.props.params.card_id) || this.editCard;
-        })
     }
+    @computed get editCard() {
+        return appState.cardsList.find((card) => card.id == this.props.params.card_id) || this.defaultEditCard
 
+    }
 
     @action
     handleChange(field, value) {

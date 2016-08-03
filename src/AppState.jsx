@@ -50,7 +50,7 @@ class AppState {
     fetch(API_URL + '/cards', { headers: API_HEADERS })
       .then(action((response) => response.json()))
       .then(action((responseData) => {
-        this.cardsList = responseData;
+       this.cardsList = responseData;
       }))
       .catch(action((error) => {
         this.cardsList = preStates;

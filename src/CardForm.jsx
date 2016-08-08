@@ -16,8 +16,10 @@ export class CardForm extends Component {
         this.props.handleChange(field, e.target.value);
     }
     handleClose(e) {
+        console.log(browserHistory);
         e.preventDefault();
         browserHistory.push('/');
+        console.log(browserHistory);
     }
 
     render() {

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes} from 'react';
 import {propTypes, observer} from 'mobx-react';
 import {CardForm} from './CardForm';
-import { observable, toJS, autorun, action,computed} from 'mobx';
+import { observable, action,computed} from 'mobx';
 import {appState} from './AppState';
 import { browserHistory } from 'react-router';
 

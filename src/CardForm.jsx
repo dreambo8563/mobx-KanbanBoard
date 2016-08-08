@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { observer, propTypes  } from 'mobx-react';
-import { browserHistory } from 'react-router'
+import browserHistory from 'react-router/lib/browserHistory';
 
 @observer
 export class CardForm extends Component {

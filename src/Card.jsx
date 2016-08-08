@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {CheckList} from './CheckList';
 import { observable, action } from 'mobx';
 import {observer, propTypes} from 'mobx-react';
-import { Link } from 'react-router';
+import Link from 'react-router/lib/Link';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { DragSource, DropTarget} from 'react-dnd';
 import {Type} from './Constants';

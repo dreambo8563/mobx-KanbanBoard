@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import {EditCard} from './EditCard';
-import {NewCard} from './NewCard';
+// import {NewCard} from './NewCard';
 import { observer} from 'mobx-react';
-import { Router, Route, browserHistory  } from 'react-router';
+import Route from 'react-router/lib/Route'
+import Router from 'react-router/lib/Router'
+import browserHistory from 'react-router/lib/browserHistory';
 import {appState} from './AppState';
 import {KanbanBoard} from './KanbanBoard';
 
@@ -12,7 +14,12 @@ export class RouterComp extends Component {
         return (
             <Router history={browserHistory}>
                 <Route path="/" component={KanbanBoard} store={appState}>
-                    <Route path="new" component={NewCard} />
+                    <Route path="new" getComponent={(location, cb) => {
+                        require.ensure([], require => {
+                            // Retrieve main page component
+                            cb(null, require('./NewCard').NewCard);
+                        });
+                    } } />
                     <Route path="edit/:card_id" component={EditCard} />
                     <Route path="*" component={() => <div>404 not found</div>}/>
                 </Route>

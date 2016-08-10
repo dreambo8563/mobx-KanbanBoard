@@ -1,4 +1,14 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-        "editor.renderIndentGuides": true
+        "editor.renderIndentGuides": true,
+        "files.exclude": {
+                "**/.git": true,
+                "**/.DS_Store": true,
+                "**/*.map": true,
+                "**/*.js": {
+                        "when": "$(basename).ts"
+                }
+        },
+        "javascript.validate.enable": false,
+        "eslint.enable": true
 }
